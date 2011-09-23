@@ -1,0 +1,21 @@
+/**
+ * Glproto stands for "Generator Language Prototype" ;-)
+ * It's a proof of concept to use Daniel Dietrich's Xtext Protected Region Support.
+ */
+grammar com.soluvas.glproto.Glproto with org.eclipse.xtext.common.Terminals
+
+generate glproto "http://www.soluvas.com/glproto/Glproto"
+
+Model:
+	'(language' package=FQN name=ID ')'
+	packages+=Package*;
+
+FQN: ID ('.' ID)*;
+
+Package:
+	'(package' name=FQN files+=File* ')';
+
+File:
+	'(file' name=ID 'java' ')'
+;
+

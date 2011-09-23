@@ -1,0 +1,5 @@
+(language com.soluvas.dozer Dozer)
+
+(package com.hendyirawan
+	(file Product java)
+)

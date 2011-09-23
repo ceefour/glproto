@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.soluvas.glproto/src-gen"
+    editDirectory="/com.soluvas.glproto.edit/src" editorDirectory="/com.soluvas.glproto.editor/src"
+    modelPluginID="com.soluvas.glproto" forceOverwrite="true" modelName="Glproto"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="com.soluvas.glproto.edit"
+    editorPluginID="com.soluvas.glproto.editor">
+  <genPackages prefix="Glproto" basePackage="com.soluvas.glproto" disposableProviderFactory="true"
+      ecorePackage="platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#/">
+    <genClasses ecoreClass="platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//Model/package"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//Model/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//Model/packages"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//Package/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//Package/files"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//File">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/com.soluvas.glproto/src-gen/com/soluvas/glproto/Glproto.ecore#//File/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
