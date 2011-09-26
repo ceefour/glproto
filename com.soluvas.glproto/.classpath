@@ -7,5 +7,6 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="/home/opt/sonatype-work/nexus/storage/thirdparty/commons-io/commons-io/2.0.1/commons-io-2.0.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/net.danieldietrich.xtext.protectedregions"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/net.danieldietrich.xtext.bifsa"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

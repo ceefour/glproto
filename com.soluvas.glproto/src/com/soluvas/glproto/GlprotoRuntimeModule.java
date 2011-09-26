@@ -3,10 +3,11 @@
  */
 package com.soluvas.glproto;
 
+import net.danieldietrich.xtext.bifsa.BiJavaIoFileSystemAccess;
+
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 
 import com.google.inject.Binder;
-import com.soluvas.glproto.generator.ExtendedFileSystemAccess;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -14,7 +15,7 @@ import com.soluvas.glproto.generator.ExtendedFileSystemAccess;
 public class GlprotoRuntimeModule extends com.soluvas.glproto.AbstractGlprotoRuntimeModule {
 
 	public Class<? extends JavaIoFileSystemAccess> bindIFileSystemAccess() {
-		return ExtendedFileSystemAccess.class;
+		return BiJavaIoFileSystemAccess.class;
 	}
 	
 	@Override

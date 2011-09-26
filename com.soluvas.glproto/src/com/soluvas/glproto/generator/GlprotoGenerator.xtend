@@ -15,10 +15,11 @@ import net.danieldietrich.xtext.generator.protectedregions.ProtectedRegionParser
 import java.io.FileInputStream
 import org.eclipse.xtext.util.StringInputStream
 import java.io.SequenceInputStream
+import net.danieldietrich.xtext.bifsa.IBiFileSystemAccess
 
 class GlprotoGenerator implements IGenerator {
 	
-	ExtendedFileSystemAccess efsa
+	IBiFileSystemAccess bfsa
 	Model model
 	
 	/**
@@ -26,7 +27,7 @@ class GlprotoGenerator implements IGenerator {
 	 */
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		GeneratorUtils::check(fsa)
-		efsa = fsa as ExtendedFileSystemAccess
+		bfsa = fsa as IBiFileSystemAccess
 		model = resource.contents.get(0) as Model
 		for (pkg : model.packages) {
 			generatePackage(pkg)
@@ -58,7 +59,7 @@ class GlprotoGenerator implements IGenerator {
 		var String merged = generated.toString
 		try {
 			var parser = ProtectedRegionParserFactory::createDefaultJavaParser()
-			var _protected = efsa.getFileContents(fileName)
+			var _protected = bfsa.getFileContents(fileName)
 			var protectedDoc = parser.parse(new StringInputStream(_protected))
 			var generatedDoc = parser.parse(new StringInputStream(generated.toString))
 			var mergedDoc = ProtectedRegionUtil::merge(generatedDoc, protectedDoc)
@@ -66,6 +67,6 @@ class GlprotoGenerator implements IGenerator {
 		} catch (Exception ex) {
 			// no need to merge
 		}
-		efsa.generateFile(fileName, merged) 
+		bfsa.generateFile(fileName, merged) 
 	}
 }
