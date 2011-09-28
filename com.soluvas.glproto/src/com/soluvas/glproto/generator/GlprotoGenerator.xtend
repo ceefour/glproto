@@ -40,6 +40,7 @@ class GlprotoGenerator implements IGenerator {
 		}
 	}
 	
+	// this should be "generated"
 	def void generateFile(com.soluvas.glproto.glproto.Package pkg, File file) {
 		var pkgPath = pkg.name.replace(".", "/")
 		var fileName = pkgPath + "/" + file.name + ".java"
@@ -48,11 +49,7 @@ class GlprotoGenerator implements IGenerator {
 		
 		public class DoSomething {
 			
-			public void makeJavaCoffee() {
-				/*PROTECTED REGION ID(makeCoffee) START*/
-				// TODO: please implement your business logic here!
-				/*PROTECTED REGION END*/
-			}
+			«renderMethods»
 			
 		}
 		'''
@@ -68,5 +65,31 @@ class GlprotoGenerator implements IGenerator {
 			// no need to merge
 		}
 		bfsa.generateFile(fileName, merged) 
+	}
+	
+	// generated
+	def renderMethods() {
+		'''
+		«renderCoffeeMethod("Java")»
+		'''
+	}
+	
+	// generated
+	def renderCoffeeMethod(String flavor) {
+		'''
+		public void makeJavaCoffee() {
+			«renderCoffeeMethodBody(flavor)»
+		}
+		'''
+	}
+	
+	// this is not generated, and developer must choose to "override" this method
+	// (although it should be overridden by default)
+	def renderCoffeeMethodBody(String flavor) {
+		'''		
+		/*PROTECTED REGION ID(makeCoffee) START*/
+		// TODO: please implement your business logic here!
+		/*PROTECTED REGION END*/
+		'''		
 	}
 }

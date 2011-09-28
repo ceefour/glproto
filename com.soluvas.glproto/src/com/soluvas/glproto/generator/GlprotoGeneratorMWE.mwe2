@@ -3,8 +3,8 @@ module com.soluvas.glproto.generator.GlprotoGeneratorMWE
 
 import org.eclipse.emf.mwe.utils.*
 
-var targetDir = "/home/ceefour/spaces/soluvas/com.soluvas.glproto/target"
-var modelPath = "/home/ceefour/spaces/soluvas/com.soluvas.glproto/model"
+var targetDir = "/home/ceefour/git/glproto/com.soluvas.glproto/target"
+var modelPath = "/home/ceefour/git/glproto/com.soluvas.glproto/model"
 
 Workflow {
 
