@@ -10,12 +10,11 @@ import java.util.logging.Logger
 import org.eclipse.xtext.generator.GeneratorUtil
 import com.soluvas.glproto.glproto.Model
 import com.soluvas.glproto.glproto.File
-import net.danieldietrich.xtext.generator.protectedregions.ProtectedRegionUtil
-import net.danieldietrich.xtext.generator.protectedregions.ProtectedRegionParserFactory
 import java.io.FileInputStream
 import org.eclipse.xtext.util.StringInputStream
 import java.io.SequenceInputStream
 import net.danieldietrich.xtext.bifsa.IBiFileSystemAccess
+import net.danieldietrich.xtext.generator.protectedregions.RegionParserFactory
 
 class GlprotoGenerator implements IGenerator {
 	
@@ -53,18 +52,8 @@ class GlprotoGenerator implements IGenerator {
 			
 		}
 		'''
-		var String merged = generated.toString
-		try {
-			var parser = ProtectedRegionParserFactory::createDefaultJavaParser()
-			var _protected = bfsa.getFileContents(fileName)
-			var protectedDoc = parser.parse(new StringInputStream(_protected))
-			var generatedDoc = parser.parse(new StringInputStream(generated.toString))
-			var mergedDoc = ProtectedRegionUtil::merge(generatedDoc, protectedDoc)
-			merged = mergedDoc.contents
-		} catch (Exception ex) {
-			// no need to merge
-		}
-		bfsa.generateFile(fileName, merged) 
+		var parser = RegionParserFactory::createDefaultJavaParser()
+		RegionUtils::generateProtectableFile(fileName, bfsa, parser, generated.toString)
 	}
 	
 	// generated
