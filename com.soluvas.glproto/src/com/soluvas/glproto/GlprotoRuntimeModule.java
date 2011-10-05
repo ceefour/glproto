@@ -3,7 +3,7 @@
  */
 package com.soluvas.glproto;
 
-import net.danieldietrich.xtext.bifsa.BiJavaIoFileSystemAccess;
+import net.danieldietrich.protectedregions.xtext.BidiJavaIoFileSystemAccess;
 
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 
@@ -14,8 +14,8 @@ import com.google.inject.Binder;
  */
 public class GlprotoRuntimeModule extends com.soluvas.glproto.AbstractGlprotoRuntimeModule {
 
-	public Class<? extends JavaIoFileSystemAccess> bindIFileSystemAccess() {
-		return BiJavaIoFileSystemAccess.class;
+	public Class<? extends JavaIoFileSystemAccess> bindJavaIoFileSystemAccess() {
+		return BidiJavaIoFileSystemAccess.class;
 	}
 	
 	@Override

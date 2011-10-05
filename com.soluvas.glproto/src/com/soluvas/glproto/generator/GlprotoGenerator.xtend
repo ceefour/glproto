@@ -15,18 +15,29 @@ import org.eclipse.xtext.util.StringInputStream
 import java.io.SequenceInputStream
 import net.danieldietrich.xtext.bifsa.IBiFileSystemAccess
 import net.danieldietrich.xtext.generator.protectedregions.RegionParserFactory
+import net.danieldietrich.protectedregions.xtext.IBidiFileSystemAccess
+import net.danieldietrich.protectedregions.xtext.ProtectedRegionSupport
+import net.danieldietrich.protectedregions.core.RegionParserFactory
 
 class GlprotoGenerator implements IGenerator {
 	
-	IBiFileSystemAccess bfsa
+	IFileSystemAccess fsa
 	Model model
 	
 	/**
 	 * Requires ExtendedFileSystemAccess
 	 */
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		GeneratorUtils::check(fsa)
-		bfsa = fsa as IBiFileSystemAccess
+		
+		val bfsa = fsa as IBidiFileSystemAccess
+
+	    this.fsa = new ProtectedRegionSupport$Builder(bfsa)
+	    	.addParser(RegionParserFactory::createJavaParser, ".java")
+	    	.addParser(RegionParserFactory::createXmlParser, ".xml")
+	    	.read("", IFileSystemAccess::DEFAULT_OUTPUT)
+	    	.build
+
+		var model = resource.contents.get(0) as Model
 		model = resource.contents.get(0) as Model
 		for (pkg : model.packages) {
 			generatePackage(pkg)
@@ -52,8 +63,7 @@ class GlprotoGenerator implements IGenerator {
 			
 		}
 		'''
-		var parser = RegionParserFactory::createDefaultJavaParser()
-		RegionUtils::generateProtectableFile(fileName, bfsa, parser, generated.toString)
+		fsa.generateFile(fileName, generated)
 	}
 	
 	// generated
